@@ -26,12 +26,17 @@ def listaDir(pDir='.'):
         Caso não seja informado um diretório será listado o diretório onde o 
         script em execução está localizado.
     '''
+    
     if os.path.exists(pDir): # verifica se o diretório existe
-        p = Path(pDir) # instancia p como o diretório passado
+        p = Path(os.path.dirname(pDir)) # instancia p como o diretório passado
         print(100 * '-')
-        print('Diretório: ', os.path.abspath(pDir))
+        
+        if pDir == '.':
+            print('{0}{1}'.format(os.path.basename(os.path.abspath(pDir)), os.sep))
+        else:
+            print('{0}{1}'.format(p.name, os.sep))
         for i in p.iterdir(): 
-            print('\t->', i)
+            print('    |_', i.name)
         print(100 * '-')
         
 if __name__ == '__main__':
